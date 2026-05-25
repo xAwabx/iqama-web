@@ -9,6 +9,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ArrowRight } from "lucide-react";
 
 const schema = z.object({
   email: z
@@ -80,10 +81,10 @@ export function WaitlistForm() {
         aria-live="polite"
         className="rounded-lg border border-hairline bg-card p-xl"
       >
-        <p className="font-display text-h2 text-ink">You're on the list.</p>
+        <p className="font-display text-h2 text-ink">You are on the list.</p>
         <p className="mt-sm text-body text-ink-muted">
-          We'll send a short note when Iqama is ready. No marketing, no
-          follow-ups — just the launch.
+          We will send one short note when Iqama is ready. Nothing before that.
+          Jazak Allah khayr.
         </p>
       </div>
     );
@@ -117,7 +118,12 @@ export function WaitlistForm() {
         )}
       </div>
 
-      <Button type="submit" disabled={submitting} className="w-full sm:w-auto">
+      <Button
+        type="submit"
+        disabled={submitting}
+        className="w-full hover:cursor-pointer sm:w-auto"
+      >
+        <ArrowRight />
         {submitting ? "Joining…" : "Join the waitlist"}
       </Button>
 
