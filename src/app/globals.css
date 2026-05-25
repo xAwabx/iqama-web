@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+ * Stillness — design tokens
+ * Source of truth for the palette/typography/spacing is the mobile design
+ * system at ../design-system/MASTER.md. Per-page overrides live in
+ * ../design-system/pages/. If something here looks off, fix it there first.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  /* Palette — warm paper + ink + rationed orange */
+  --paper: #f5f1eb;
+  --card: #fbf8f3;
+  --ink: #2a1f18;
+  --ink-muted: #8e7e70;
+  --hairline: #e8e0d4;
+  --accent: #c96442;
+  --ember: #e07a3c;
+
+  /* Type scale (semantic, mirrors mobile) */
+  --text-display: 3rem;          /* 48px — hero headline */
+  --text-h1: 2.25rem;            /* 36px */
+  --text-h2: 1.5rem;             /* 24px */
+  --text-body: 1rem;             /* 16px */
+  --text-caption: 0.875rem;      /* 14px */
+
+  /* Spacing scale — mirrors mobile IqamaSpacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 48px;
+
+  /* Radius — mirrors mobile IqamaRadius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 24px;
+  --radius-pill: 9999px;
+
+  /* Web-only container widths */
+  --container-prose: 65ch;
+  --container-content: 1120px;
+  --container-narrow: 720px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1a1410;
+    --card: #221a14;
+    --ink: #f0e9dd;
+    --ink-muted: #998878;
+    --hairline: #3a2f24;
+    --accent: #d97a55;
+    --ember: #e8946a;
+  }
+}
+
+@theme inline {
+  /* Colors */
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --color-ember: var(--ember);
+
+  /* Default background/foreground for Tailwind utilities */
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+
+  /* Fonts (wired up in layout.tsx via next/font) */
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-geist-mono);
+
+  /* Semantic type sizes */
+  --text-display: var(--text-display);
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-body: var(--text-body);
+  --text-caption: var(--text-caption);
+
+  /* Spacing — exposes p-xs, p-sm, p-md, etc. */
+  --spacing-xs: var(--space-xs);
+  --spacing-sm: var(--space-sm);
+  --spacing-md: var(--space-md);
+  --spacing-lg: var(--space-lg);
+  --spacing-xl: var(--space-xl);
+  --spacing-2xl: var(--space-2xl);
+  --spacing-3xl: var(--space-3xl);
+
+  /* Radius — exposes rounded-sm, rounded-md, etc. */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Breakpoints — mobile-first */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Quiet, ink-colored focus ring everywhere — never browser blue. */
+*:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
